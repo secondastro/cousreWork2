@@ -44,32 +44,32 @@ public class TaskList {
         Task n;
         while (taskIterator.hasNext()) {
             n = taskIterator.next();
-            if (n.getDate().equals(date)) {
-                System.out.println(n);
-            }
-            switch (n.getPeriodicity()) {
-                case SINGLE:
-                    if (n.getDate() == date) {
+            if (!date.isBefore(n.getDate())) {
+                switch (n.getPeriodicity()) {
+                    case SINGLE:
+                        if (n.getDate() == date) {
+                            System.out.println(n);
+                        }
+                        break;
+                    case DAILY:
                         System.out.println(n);
-                    }
-                case DAILY:
-                    System.out.println(n);
-                    break;
-                case WEEKLY:
-                    if (n.getDate().getDayOfWeek() == date.getDayOfWeek()) {
-                        System.out.println(n);
-                    }
-                    break;
-                case MONTHLY:
-                    if (n.getDate().getDayOfMonth() == date.getDayOfMonth()) {
-                        System.out.println(n);
-                    }
-                    break;
-                case YEARLY:
-                    if (n.getDate().getDayOfMonth() == date.getDayOfMonth() &&
-                            n.getDate().getMonth() == date.getMonth()) {
-                        System.out.println(n);
-                    }
+                        break;
+                    case WEEKLY:
+                        if (n.getDate().getDayOfWeek() == date.getDayOfWeek()) {
+                            System.out.println(n);
+                        }
+                        break;
+                    case MONTHLY:
+                        if (n.getDate().getDayOfMonth() == date.getDayOfMonth()) {
+                            System.out.println(n);
+                        }
+                        break;
+                    case YEARLY:
+                        if (n.getDate().getDayOfMonth() == date.getDayOfMonth() &&
+                                n.getDate().getMonth() == date.getMonth()) {
+                            System.out.println(n);
+                        }
+                }
             }
         }
     }
